@@ -46,4 +46,5 @@ def zillow_api_request(city):
     unit_info_df = unit_info_df.drop(['index'], axis=1)
     unit_info_df = unit_info_df.drop(['level_0'], axis=1)
 
+
     unit_info_df.to_csv(f"./Resources/{city}.csv", index=False)

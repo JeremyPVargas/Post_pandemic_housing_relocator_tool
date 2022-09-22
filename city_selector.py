@@ -3,7 +3,7 @@ import questionary
 import pandas as pd
 import hvplot.pandas
 import matplotlib.pyplot as plt
-import plotext as plt2
+#import plotext as plt2
 from pathlib import Path
 import holoviews as hv
 from zillow_api import zillow_api_request
@@ -28,6 +28,7 @@ def run():
     city_df = city_df.drop(columns=["City_Name", "FIPS_Code", "Population", "Bedroom_Size"])
     city_df_transposed = city_df.T
     city_df_transposed = city_df_transposed.astype(float)
+    city_df_transposed.columns = ["Rent"]
     
     aug_2022_avg = city_df_transposed.values[-1].min()
     
@@ -70,13 +71,13 @@ def run():
     #city_listings_data = listings_df[listings_df['CITY STATE COLUMN'] == city]
     #display(city_listings_data.head())
     
-    #GeoViews plot
+    #GeoViews plot   
     hv.save(city_listings_df.hvplot.points(
         'longitude',
         'latitude',
         geo=True,
         tiles='OSM',
-        hover_cols="all",
+        hover_cols=["address", "units"],
         frame_width=500,
         frame_height=500,
     ), './Results/geoviews.html')
@@ -87,7 +88,7 @@ def run():
     # plt2.title("test")
     # plt2.show()
             
-    print(f"\nthe average rent for {city} in August 2022 was {aug_2022_avg}\n")
+    print(f"\nthe average rent for {city} in August 2022 was ${aug_2022_avg}\n")
     print(f"Please see the following charts in ./Results/ for a view of the average rent history for {city}\n city_plot.jpg\n city_plot.html\n geoviews.html\n")
     print(f"Thanks for using our Post Pandemic Housing Relocator Tool! Goodbye!")
 
