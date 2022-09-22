@@ -171,7 +171,7 @@ UW FinTech Bootcamp instructors and tutors
 ---
 <!--License -->
 ## License
-Portfolio Risk Analysis tool is available under an MIT License.
+The Post_Pandemic Housing Relocator Tool is available under an MIT License.
 
 
 ### Permissions
